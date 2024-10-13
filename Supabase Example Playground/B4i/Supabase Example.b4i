@@ -1,0 +1,78 @@
+﻿Build1=Default,com.supabase.b4x,SupabaseRealTime
+File1=frm_main.bil
+FileGroup1=Default Group
+Group=Default Group
+Library1=b4xpages
+Library2=icore
+Library3=idateutils
+Library4=ihttputils2
+Library5=ijson
+Library6=irandomaccessfile
+Library7=ixui
+Library8=xui views
+Library9=iwebsocket
+Module1=|relative|..\B4XMainPage
+Module10=|relative|..\..\Supabase_Functions
+Module11=|relative|..\..\Supabase_Storage
+Module12=|relative|..\..\Supabase_StorageBucket
+Module13=|relative|..\..\Supabase_StorageFile
+Module14=|relative|..\..\SupabaseRealtime
+Module15=|relative|..\..\SupabaseRealtime_Channel
+Module16=|relative|..\..\SupabaseRealtime_Client
+Module2=|relative|..\..\Supabase
+Module3=|relative|..\..\Supabase_Authentication
+Module4=|relative|..\..\Supabase_Database
+Module5=|relative|..\..\Supabase_DatabaseDelete
+Module6=|relative|..\..\Supabase_DatabaseInsert
+Module7=|relative|..\..\Supabase_DatabaseRpc
+Module8=|relative|..\..\Supabase_DatabaseSelect
+Module9=|relative|..\..\Supabase_DatabaseUpdate
+NumberOfFiles=1
+NumberOfLibraries=9
+NumberOfModules=16
+Version=8.45
+@EndOfDesignText@
+'Code module
+#Region  Project Attributes 
+	#ApplicationLabel: Supabase Example
+	#Version: 1.0.0 
+	'Orientation possible values: Portrait, LandscapeLeft, LandscapeRight and PortraitUpsideDown
+	#iPhoneOrientations: Portrait, LandscapeLeft, LandscapeRight
+	#iPadOrientations: Portrait, LandscapeLeft, LandscapeRight, PortraitUpsideDown
+	#Target: iPhone, iPad
+	#ATSEnabled: True
+	#MinVersion: 13
+	#ProvisionFile: supabase4b4x.mobileprovision
+	'#UrlScheme: com.stoltex.supabase
+	#UrlScheme: com.supabase.b4x
+	#AdditionalLib: AuthenticationServices.framework
+	#Entitlement: <key>com.apple.developer.applesignin</key><array><string>Default</string></array>
+#End Region
+
+Sub Process_Globals
+	Public App As Application
+	Public NavControl As NavigationController
+
+End Sub
+
+Private Sub Application_Start (Nav As NavigationController)
+	NavControl = Nav
+	Dim PagesManager As B4XPagesManager
+	PagesManager.Initialize(NavControl)
+End Sub
+
+Private Sub Application_OpenUrl (Url As String, Data As Object, SourceApplication As String) As Boolean
+	B4XPages.MainPage.xSupabase.Auth.CallFromOpenUrl(Url)
+	Return True
+End Sub
+
+'Template version: B4i-1.0
+#Region Delegates
+Private Sub Application_Background
+	B4XPages.Delegate.Activity_Pause
+End Sub
+
+Private Sub Application_Foreground
+	B4XPages.Delegate.Activity_Resume
+End Sub
+#End Region
