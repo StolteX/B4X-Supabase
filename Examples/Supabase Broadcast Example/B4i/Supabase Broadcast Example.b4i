@@ -32,7 +32,7 @@ Module9=|relative|..\..\..\Supabase_DatabaseUpdate
 NumberOfFiles=2
 NumberOfLibraries=9
 NumberOfModules=16
-Version=8.3
+Version=8.45
 @EndOfDesignText@
 'Code module
 #Region  Project Attributes 

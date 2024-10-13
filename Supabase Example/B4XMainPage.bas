@@ -29,7 +29,7 @@ Private Sub B4XPage_Created (Root1 As B4XView)
 	
 	B4XPages.SetTitle(Me,"Supabase Example")
 	
-	xSupabase.Initialize("https://hzyxcepknitxzfhghsmn.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6eXhjZXBrbml0eHpmaGdoc21uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc1NzU4NzcsImV4cCI6MTk3MzE1MTg3N30.Op1akQpHfvWJXEZCFornQeoK2J7_R-3IPK0VHLrNphY")
+	xSupabase.Initialize("https://xxx.supabase.co","xxx")
 
 
 '	Wait For (xSupabase.Auth.Logout) Complete (Result As SupabaseError)
