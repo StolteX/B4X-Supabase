@@ -229,20 +229,20 @@ Public Sub Execute As ResumableSub
 	Dim url As String = $"${m_Supabase.URL}/rest/v1/rpc/${m_FunctionName}"$
 		
 	For i = 0 To m_WhereList.Size -1
-		url = url & "&" & m_WhereList.Get(i)
+		url = url & IIf(url.Contains("?"),"&","?") & m_WhereList.Get(i)
 	Next
 	
 	If m_OrderBy <> "" Then
-		url = url & "&" & "order=" & m_OrderBy
+		url = url & IIf(url.Contains("?"),"&","?") & "order=" & m_OrderBy
 	End If
 	
 	'https://www.postgresql.org/docs/current/queries-limit.html
 	If m_Limit > 0 Then
-		url = url & "&" & "limit=" & m_Limit
+		url = url & IIf(url.Contains("?"),"&","?") & "limit=" & m_Limit
 	End If
 	
 	If m_Offset > 0 Then
-		url = url & "&" & "offset=" & m_Offset
+		url = url & IIf(url.Contains("?"),"&","?") & "offset=" & m_Offset
 	End If
 
 	'Log(url)
@@ -251,10 +251,10 @@ Public Sub Execute As ResumableSub
 		Dim jsn As JSONGenerator
 		jsn.Initialize(m_ParamValue)
 		Dim ParamJson As String = jsn.ToString
-		j.PostString(url,ParamJson)
+		j.PostString(url.ToLowerCase,ParamJson)
 		j.GetRequest.SetContentType("application/json")
 	Else
-		j.Download(url)
+		j.Download(url.ToLowerCase)
 		j.GetRequest.SetHeader("Content-Type","application/json")
 	End If
 	
@@ -273,7 +273,7 @@ Public Sub Execute As ResumableSub
 
 		Else
 
-			Log(j.GetString)
+			'Log(j.GetString)
 			RpcResult.Data = j.GetString
 				
 		End If

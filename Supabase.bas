@@ -149,7 +149,9 @@ V1.24
 		-BugFixes on LogIn_Anonymously
 			-User is now automatically logged out if they are still logged in with a real account
 			-A new anonymous account is now not created each time this function is called up, the existing anonymous account is used
-
+V1.25
+	-Database
+		-BugFix - RPC filters now work
 #End IF
 
 #Event: AuthStateChange(StateType As String)
