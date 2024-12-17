@@ -152,6 +152,9 @@ V1.24
 V1.25
 	-Database
 		-BugFix - RPC filters now work
+V1.26
+	-Supabase_Functions
+		-Better Error Handling on the GenerateResult function
 #End IF
 
 #Event: AuthStateChange(StateType As String)

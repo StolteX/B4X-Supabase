@@ -72,10 +72,20 @@ Public Sub GenerateResult(j As HttpJob) As Map
 		response = j.ErrorMessage
 	End If
 	
-	Dim parser As JSONParser
-	parser.Initialize(response)
-	Dim tmp_result As Map = UnReadOnlyMap(parser.NextObject)
-	tmp_result.Put("success",j.Success)
+	Dim tmp_result As Map
+	
+	Try
+	
+		Dim parser As JSONParser
+		parser.Initialize(response)
+		tmp_result = UnReadOnlyMap(parser.NextObject)
+		tmp_result.Put("success",j.Success)
+	
+	Catch
+		Log("Supabase_Functions: " & LastException)
+		tmp_result.Initialize
+		tmp_result.Put("success",False)
+	End Try
 	
 	j.Release
 	Return tmp_result
