@@ -40,6 +40,8 @@ Private Sub B4XPage_Created (Root1 As B4XView)
 	xSupabase.Initialize("https://xxx.supabase.co","xxx")
 	xSupabase.InitializeEvents(Me,"Supabase")
 	
+	xSupabase.LogEvents = True
+	
 	Dialog.Initialize(Root)
 	
 '	Wait For (xSupabase.Auth.Logout) Complete (Result As SupabaseError)

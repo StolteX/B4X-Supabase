@@ -222,11 +222,11 @@ End Sub
 '		Log("Error: " & StorageFile.Error.ErrorMessage)
 '	End If
 '</code>
-Public Sub MoveFile(BucketName As String,FromPath As String,ToPath As String) As Supabase_StorageFile
+Public Sub MoveFile(BucketName As String,FromPath As String,ToPath As String,DestinationBucket As String) As Supabase_StorageFile
 	
 	Dim StorageFile As Supabase_StorageFile
-	StorageFile.Initialize(m_Supabase,BucketName,"MoveFile")
-	StorageFile.MoveFile(FromPath,ToPath)
+	StorageFile.Initialize(m_Supabase,BucketName,"MovePath")
+	StorageFile.MoveFile(FromPath,ToPath,DestinationBucket)
 	Return StorageFile
 	
 End Sub
@@ -242,11 +242,11 @@ End Sub
 '		Log("Error: " & StorageFile.Error.ErrorMessage)
 '	End If
 '</code>
-Public Sub CopyFile(BucketName As String,FromPath As String,ToPath As String) As Supabase_StorageFile
+Public Sub CopyFile(BucketName As String,FromPath As String,ToPath As String,DestinationBucket As String) As Supabase_StorageFile
 	
 	Dim StorageFile As Supabase_StorageFile
-	StorageFile.Initialize(m_Supabase,BucketName,"CopyFile")
-	StorageFile.CopyFile(FromPath,ToPath)
+	StorageFile.Initialize(m_Supabase,BucketName,"CopyPath")
+	StorageFile.CopyFile(FromPath,ToPath,DestinationBucket)
 	Return StorageFile
 	
 End Sub

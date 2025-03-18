@@ -155,6 +155,9 @@ V1.25
 V1.26
 	-Supabase_Functions
 		-Better Error Handling on the GenerateResult function
+V1.27
+	-Storage
+		-BugFixes
 #End IF
 
 #Event: AuthStateChange(StateType As String)

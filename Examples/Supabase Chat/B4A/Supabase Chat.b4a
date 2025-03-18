@@ -20,13 +20,28 @@ Library8=xcustomlistview
 Library9=xui views
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=|relative|..\B4XMainPage
+Module10=|relative|..\..\..\Supabase_DatabaseRpc
+Module11=|relative|..\..\..\Supabase_DatabaseSelect
+Module12=|relative|..\..\..\Supabase_DatabaseUpdate
+Module13=|relative|..\..\..\Supabase_Functions
+Module14=|relative|..\..\..\Supabase_Storage
+Module15=|relative|..\..\..\Supabase_StorageBucket
+Module16=|relative|..\..\..\Supabase_StorageFile
+Module17=|relative|..\..\..\SupabaseRealtime
+Module18=|relative|..\..\..\SupabaseRealtime_Channel
+Module19=|relative|..\..\..\SupabaseRealtime_Client
 Module2=|relative|..\b4xp_Chat
 Module3=|relative|..\b4xp_Login
 Module4=Starter
+Module5=|relative|..\..\..\Supabase
+Module6=|relative|..\..\..\Supabase_Authentication
+Module7=|relative|..\..\..\Supabase_Database
+Module8=|relative|..\..\..\Supabase_DatabaseDelete
+Module9=|relative|..\..\..\Supabase_DatabaseInsert
 NumberOfFiles=4
 NumberOfLibraries=10
-NumberOfModules=4
-Version=12.5
+NumberOfModules=19
+Version=12.8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Supachat

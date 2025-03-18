@@ -28,6 +28,7 @@ Sub Class_Globals
 	Private m_DeleteFiles() As Object
 	Private m_MovePath_FromPath As String
 	Private m_MovePath_ToPath As String
+	Private m_MovePath_DestinationBucket As String
 	Private m_ExpiresInSeconds As Int
 	Private m_SignedURL As String
 End Sub
@@ -114,15 +115,17 @@ Public Sub Remove(FileNames() As Object) As Supabase_StorageFile
 	Return Me
 End Sub
 
-Public Sub MoveFile(FromPath As String,ToPath As String) As Supabase_StorageFile
+Public Sub MoveFile(FromPath As String,ToPath As String,DestinationBucket As String) As Supabase_StorageFile
 	m_MovePath_FromPath = FromPath
 	m_MovePath_ToPath = ToPath
+	m_MovePath_DestinationBucket = DestinationBucket
 	Return Me
 End Sub
 
-Public Sub CopyFile(FromPath As String,ToPath As String) As Supabase_StorageFile
+Public Sub CopyFile(FromPath As String,ToPath As String,DestinationBucket As String) As Supabase_StorageFile
 	m_MovePath_FromPath = FromPath
 	m_MovePath_ToPath = ToPath
+	m_MovePath_DestinationBucket = DestinationBucket
 	Return Me
 End Sub
 
@@ -397,7 +400,7 @@ Private Sub MoveOrCopyPath(CopyPath As Boolean) As ResumableSub
 		StorageFile.Error = DatabaseError
 		Return StorageFile
 	End If
-	
+
 	Dim url As String = ""
 	url = url & $"${m_Supabase.URL}/storage/v1/object/"$ & IIf(CopyPath,"copy","move")
 
@@ -406,6 +409,7 @@ Private Sub MoveOrCopyPath(CopyPath As Boolean) As ResumableSub
 	Dim m_Request As Map
 	m_Request.Initialize
 	m_Request.Put("bucketId",m_BucketName)
+	If m_MovePath_DestinationBucket <> "" Then m_Request.Put("destinationBucket",m_MovePath_DestinationBucket)
 	m_Request.Put("sourceKey",m_MovePath_FromPath)
 	m_Request.Put("destinationKey",m_MovePath_ToPath)
 	
@@ -415,7 +419,8 @@ Private Sub MoveOrCopyPath(CopyPath As Boolean) As ResumableSub
 	j.PostString(url,jsn.ToString)
 	j.GetRequest.SetHeader("apikey",m_Supabase.ApiKey)
 	j.GetRequest.SetHeader("Authorization","Bearer " & AccessToken)
-	j.GetRequest.SetContentType(Supabase_Functions.GetMimeTypeByExtension(Supabase_Functions.GetFileExt(m_Wildcard)))
+	'j.GetRequest.SetContentType(Supabase_Functions.GetMimeTypeByExtension(Supabase_Functions.GetFileExt(m_Wildcard)))
+	j.GetRequest.SetContentType("application/json")
 	
 	Wait For (j) JobDone(j As HttpJob)
 
